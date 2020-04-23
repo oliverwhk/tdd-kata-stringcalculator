@@ -9,7 +9,7 @@ namespace StringCalculator
                 return 0;
             }
 
-            throw new System.NotImplementedException();
+            return int.Parse(numbers);
         }
     }
 }
