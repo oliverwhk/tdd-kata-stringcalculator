@@ -12,6 +12,8 @@ namespace StringCalculator.Tests
         [InlineData("13,24", 37)]
         [InlineData("1,2,4", 7)]
         [InlineData("1,2,4,5,8", 20)]
+        [InlineData("1\n2,3", 6)]
+        [InlineData("1\n2\n3", 6)]
         public void Add(string numbers, int expectedSum)
         {
             var calculator = new Calculator();

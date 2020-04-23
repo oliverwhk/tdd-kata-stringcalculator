@@ -12,7 +12,7 @@ namespace StringCalculator
                 return 0;
             }
 
-            var numberInStrings = numbers.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var numberInStrings = numbers.Split(new [] { ',' , '\n'}, StringSplitOptions.RemoveEmptyEntries);
             return numberInStrings.Select(n => int.Parse(n)).Sum();
         }
     }
