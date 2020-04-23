@@ -5,32 +5,15 @@ namespace StringCalculator.Tests
 {
     public class StringCalculatorTest
     {
-        [Fact]
-        public void EmptyString_Returns0()
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData("2", 2)]
+        public void Add(string numbers, int expected)
         {
-            // Arrange
-            var input = "";
-
-            // Act
             var calculator = new Calculator();
-            var result = calculator.Add(input);
+            var result = calculator.Add(numbers);
 
-            // Assert
-            result.Should().Be(0);
-        }
-        
-        [Fact]
-        public void StringWithOneNumber_ReturnsTheNumber()
-        {
-            // Arrange
-            var input = "2";
-
-            // Act
-            var calculator = new Calculator();
-            var result = calculator.Add(input);
-
-            // Assert
-            result.Should().Be(2);
+            result.Should().Be(expected);
         }
     }
 }
