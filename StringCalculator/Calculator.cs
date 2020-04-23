@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace StringCalculator
 {
@@ -11,15 +12,8 @@ namespace StringCalculator
                 return 0;
             }
 
-            if (numbers.Contains(','))
-            {
-                var numberInStrings = numbers.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                var number1 = int.Parse(numberInStrings[0]);
-                var number2 = int.Parse(numberInStrings[1]);
-                return number1 + number2;
-            }
-
-            return int.Parse(numbers);
+            var numberInStrings = numbers.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            return numberInStrings.Select(n => int.Parse(n)).Sum();
         }
     }
 }

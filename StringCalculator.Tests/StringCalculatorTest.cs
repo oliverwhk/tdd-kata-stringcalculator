@@ -10,12 +10,14 @@ namespace StringCalculator.Tests
         [InlineData("2", 2)]
         [InlineData("1,2", 3)]
         [InlineData("13,24", 37)]
-        public void Add(string numbers, int expected)
+        [InlineData("1,2,4", 7)]
+        [InlineData("1,2,4,5,8", 20)]
+        public void Add(string numbers, int expectedSum)
         {
             var calculator = new Calculator();
             var result = calculator.Add(numbers);
 
-            result.Should().Be(expected);
+            result.Should().Be(expectedSum);
         }
     }
 }
