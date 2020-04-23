@@ -2,9 +2,9 @@ namespace StringCalculator
 {
     public class Calculator
     {
-        public int Add(string input)
+        public int Add(string numbers)
         {
-            if (string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(numbers))
             {
                 return 0;
             }
