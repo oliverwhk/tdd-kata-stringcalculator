@@ -24,22 +24,15 @@ namespace StringCalculator.Tests
             result.Should().Be(expectedSum);
         }
 
-        [Fact]
-        public void AddWithNegativeNumber_ThrowsException()
+        [Theory]
+        [InlineData("1,-3", "Negatives not allowed: -3")]
+        [InlineData("1,-3,-5", "Negatives not allowed: -3, -5")]
+        public void AddWithNegativeNumbers(string numbers, string expectedExceptionMessage)
         {
             var calculator = new Calculator();
-            Action action = () => calculator.Add("1,-3");
+            Action action = () => calculator.Add(numbers);
 
-            action.Should().Throw<Exception>().WithMessage("Negatives not allowed: -3");
-        }
-        
-        [Fact]
-        public void AddWithNegativeNumbers_ThrowsExceptionWithAllNegativeNumbers()
-        {
-            var calculator = new Calculator();
-            Action action = () => calculator.Add("1,-3,-5");
-
-            action.Should().Throw<Exception>().WithMessage("Negatives not allowed: -3, -5");
+            action.Should().Throw<Exception>().WithMessage(expectedExceptionMessage);
         }
     }
 }
