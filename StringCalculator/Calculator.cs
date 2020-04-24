@@ -15,15 +15,36 @@ namespace StringCalculator
                 return 0;
             }
 
+            AddCustomDelimiter(numbers);
+            
+            var parsedNumbers = ParseNumbersInString(RemoveCustomDelimiterPrefix(numbers));
+            return parsedNumbers.Sum();
+        }
+
+        private void AddCustomDelimiter(string numbers)
+        {
+            if (!numbers.StartsWith("//"))
+            {
+                return;
+            }
+            
+            _delimiters.Add(numbers[2]);
+        }
+
+        private IEnumerable<int> ParseNumbersInString(string numbers)
+        {
+            return numbers.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries)
+                          .Select(n => int.Parse(n));
+        }
+
+        private string RemoveCustomDelimiterPrefix(string numbers)
+        {
             if (numbers.StartsWith("//"))
             {
-                var newDelimiter = numbers[2];
-                _delimiters.Add(newDelimiter);
-                numbers = numbers.Split('\n')[1];
+                return numbers.Split('\n')[1];
             }
 
-            var numberInStrings = numbers.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
-            return numberInStrings.Select(n => int.Parse(n)).Sum();
+            return numbers;
         }
     }
 }
