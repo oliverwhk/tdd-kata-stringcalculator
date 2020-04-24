@@ -18,7 +18,21 @@ namespace StringCalculator
             AddCustomDelimiter(numbers);
             
             var parsedNumbers = ParseNumbersInString(RemoveCustomDelimiterPrefix(numbers));
+            ValidateNumbersNotNegative(parsedNumbers);
+
             return parsedNumbers.Sum();
+        }
+
+        private static void ValidateNumbersNotNegative(IEnumerable<int> numbers)
+        {
+            var negativeNumbers = numbers.Where(n => n < 0).ToList();
+
+            if (!negativeNumbers.Any())
+            {
+                return;
+            }
+            
+            throw new Exception($"Negatives not allowed: {string.Join(", ", negativeNumbers)}");
         }
 
         private void AddCustomDelimiter(string numbers)
