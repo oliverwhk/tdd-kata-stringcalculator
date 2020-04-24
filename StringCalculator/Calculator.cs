@@ -18,12 +18,12 @@ namespace StringCalculator
             AddCustomDelimiter(numbers);
             
             var parsedNumbers = ParseNumbersInString(RemoveCustomDelimiterPrefix(numbers));
-            ValidateNumbersNotNegative(parsedNumbers);
+            CheckForNegatives(parsedNumbers);
 
             return parsedNumbers.Sum();
         }
 
-        private static void ValidateNumbersNotNegative(IEnumerable<int> numbers)
+        private static void CheckForNegatives(IEnumerable<int> numbers)
         {
             var negativeNumbers = numbers.Where(n => n < 0).ToList();
 
